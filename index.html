@@ -1,36 +1,77 @@
 <!doctype html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>Adicionar contato</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cartão Digital - Gustavo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0072ff, #00c6ff);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    .card {
+      max-width: 400px;
+      margin: 60px auto;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
+    }
+    h1 { margin: 15px 0 5px; font-size: 1.8em; }
+    h2 { margin: 0 0 20px; font-size: 1em; font-weight: 400; opacity: 0.9; }
+    .buttons a {
+      display: block;
+      background: #fff;
+      color: #0072ff;
+      text-decoration: none;
+      margin: 10px auto;
+      padding: 12px;
+      border-radius: 30px;
+      width: 80%;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .buttons a:hover {
+      background: #0072ff;
+      color: #fff;
+      transform: scale(1.05);
+    }
+    footer {
+      font-size: 0.8em;
+      opacity: 0.7;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <h3>Toque em "Baixar vCard" e depois adicione aos contatos</h3>
-  <button id="baixar">Baixar vCard</button>
 
-<script>
-const vcard = `BEGIN:VCARD
-VERSION:3.0
-N:Vicente;Gustavo;;;
-FN:Gustavo Vicente
-TEL;TYPE=CELL:+5514998633376
-EMAIL:gustavovicente5@gmail.com
-ORG:Paschoalotto
-TITLE:Analista de BI
-URL:https://exemplo.com
-END:VCARD`;
+  <div class="card">
+    <img src="https://imgur.com/a/iFL4dVJ" alt="Foto de perfil">
+    <h1>Gustavo Vicente</h1>
+    <h2>Analista de BI | Paschoalotto</h2>
 
-document.getElementById('baixar').addEventListener('click', () => {
-  const blob = new Blob([vcard], {type: 'text/vcard;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'gustavo.vcf';
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-});
-</script>
+    <div class="buttons">
+      <a href="gustavo.vcf" download>📇 Adicionar Contato</a>
+      <a href="https://wa.me/5514998633376" target="_blank">💬 WhatsApp</a>
+      <a href="https://www.instagram.com/gu_vicent" target="_blank">📸 Instagram</a>
+      <a href="https://www.facebook.com/guhstavinhuu" target="_blank">📘 Facebook</a>
+      <a href="https://google.com" target="_blank">🌐 Site / Portfólio</a>
+    </div>
+
+    <footer>© 2025 Gustavo NFC</footer>
+  </div>
+
 </body>
 </html>
