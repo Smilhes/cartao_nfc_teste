@@ -1,77 +1,364 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cartão Digital - Gustavo</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0072ff, #00c6ff);
-      color: #fff;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-    .card {
-      max-width: 400px;
-      margin: 60px auto;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    }
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid #fff;
-      object-fit: cover;
-    }
-    h1 { margin: 15px 0 5px; font-size: 1.8em; }
-    h2 { margin: 0 0 20px; font-size: 1em; font-weight: 400; opacity: 0.9; }
-    .buttons a {
-      display: block;
-      background: #fff;
-      color: #0072ff;
-      text-decoration: none;
-      margin: 10px auto;
-      padding: 12px;
-      border-radius: 30px;
-      width: 80%;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-    .buttons a:hover {
-      background: #0072ff;
-      color: #fff;
-      transform: scale(1.05);
-    }
-    footer {
-      font-size: 0.8em;
-      opacity: 0.7;
-      margin-top: 20px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO e Compartilhamento (WhatsApp/Linkedin) -->
+    <title>Gustavo Vicente | Cartão Digital</title>
+    <meta name="description" content="Conecte-se com Gustavo Vicente - Analista de BI">
+    <meta property="og:title" content="Gustavo Vicente - Cartão de Visita Digital">
+    <meta property="og:description" content="Acesse meus links, contatos e portfólio.">
+    <meta property="og:image" content="https://i.imgur.com/Sd1zSie.jpeg"> <!-- Troque pela URL da foto -->
+    
+    <!-- Ícones (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonte (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. Variáveis e Temas --- */
+        :root {
+            --primary-color: #0072ff;
+            --primary-hover: #005bb5;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-bg: rgba(255, 255, 255, 0.75);
+            --text-main: #1f2937;
+            --text-secondary: #6b7280;
+            --border-color: rgba(255, 255, 255, 0.6);
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            --btn-bg: #ffffff;
+            --btn-text: #1f2937;
+            --btn-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #4facfe;
+            --primary-hover: #00f2fe;
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --btn-bg: rgba(255, 255, 255, 0.05);
+            --btn-text: #f3f4f6;
+            --btn-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+
+        /* --- 2. Reset e Base --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            transition: background 0.5s ease;
+            padding: 20px;
+        }
+
+        /* --- 3. O Cartão (Glassmorphism) --- */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px 25px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            position: relative;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* --- 4. Toggle Dark Mode --- */
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--btn-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease, background 0.3s;
+        }
+        .theme-switch:hover { transform: rotate(15deg) scale(1.1); }
+
+        /* --- 5. Perfil --- */
+        .profile-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--bg-gradient); /* Borda dinâmica */
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; letter-spacing: -0.5px; }
+        h2 { font-size: 0.95rem; color: var(--text-secondary); font-weight: 400; margin-bottom: 25px; }
+        
+        .tags {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            font-size: 0.75rem;
+            background: var(--btn-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        /* --- 6. Botões de Links --- */
+        .links { display: flex; flex-direction: column; gap: 12px; }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Ícone na esquerda */
+            padding: 16px 20px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            text-decoration: none;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: var(--btn-shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn i { width: 24px; text-align: center; margin-right: 12px; font-size: 1.2rem; }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background: var(--primary-color);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        /* Botão Destaque (Salvar Contato) */
+        .btn-primary {
+            background: var(--primary-color);
+            color: #fff;
+            justify-content: center;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        .btn-primary i { margin-right: 8px; }
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        /* Botão Compartilhar (Menor) */
+        .share-btn {
+            margin-top: 25px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 10px;
+        }
+        .share-btn:hover { color: var(--primary-color); }
+
+        /* --- 7. Rodapé --- */
+        footer {
+            margin-top: 30px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .links a { opacity: 0; animation: fadeUp 0.5s forwards; }
+        .links a:nth-child(1) { animation-delay: 0.1s; }
+        .links a:nth-child(2) { animation-delay: 0.2s; }
+        .links a:nth-child(3) { animation-delay: 0.3s; }
+        .links a:nth-child(4) { animation-delay: 0.4s; }
+        .links a:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="card">
-    <img src="https://i.imgur.com/Sd1zSie.jpeg" alt="Foto de perfil">
-    <h1>Gustavo Vicente</h1>
-    <h2>Analista de BI | Paschoalotto</h2>
+    <div class="container">
+        <!-- Botão Dark Mode -->
+        <button class="theme-switch" onclick="toggleTheme()" aria-label="Alternar Tema">
+            <i class="fas fa-moon"></i>
+        </button>
 
-    <div class="buttons">
-      <a href="gustavo.vcf" download>📇 Adicionar Contato</a>
-      <a href="https://wa.me/5514998633376" target="_blank">💬 WhatsApp</a>
-      <a href="https://www.instagram.com/gu_vicent" target="_blank">📸 Instagram</a>
-      <a href="https://www.facebook.com/guhstavinhuu" target="_blank">📘 Facebook</a>
-      <a href="https://google.com" target="_blank">🌐 Site / Portfólio</a>
+        <!-- Perfil -->
+        <img src="https://i.imgur.com/Sd1zSie.jpeg" alt="Foto de Gustavo" class="profile-img">
+        <h1>Gustavo Vicente</h1>
+        <h2>Analista de BI | Paschoalotto</h2>
+        
+        <!-- Tags (Opcional) -->
+        <div class="tags">
+            <span class="tag">🚀 Power BI</span>
+            <span class="tag">📊 Dados</span>
+            <span class="tag">🐍 Python</span>
+        </div>
+
+        <!-- Links -->
+        <div class="links">
+            <!-- Botão Mágico: Gera Contato .vcf no clique -->
+            <a href="#" onclick="downloadVCard()" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Salvar Contato
+            </a>
+            
+            <a href="https://wa.me/5514998633376" target="_blank" class="btn">
+                <i class="fab fa-whatsapp" style="color: #25D366;"></i> WhatsApp
+            </a>
+            
+            <a href="https://www.linkedin.com/in/seu-linkedin" target="_blank" class="btn">
+                <i class="fab fa-linkedin" style="color: #0077b5;"></i> LinkedIn
+            </a>
+
+            <a href="https://www.instagram.com/gu_vicent" target="_blank" class="btn">
+                <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
+            </a>
+            
+            <a href="mailto:seuemail@email.com" class="btn">
+                <i class="fas fa-envelope" style="color: #EA4335;"></i> Enviar E-mail
+            </a>
+
+            <a href="https://seusite.com" target="_blank" class="btn">
+                <i class="fas fa-globe"></i> Site / Portfólio
+            </a>
+        </div>
+
+        <!-- Ação de Compartilhar -->
+        <button class="share-btn" onclick="sharePage()">
+            <i class="fas fa-share-alt"></i> Compartilhar este perfil
+        </button>
+
+        <footer>
+            © 2025 Gustavo NFC - Soluções Digitais
+        </footer>
     </div>
 
-    <footer>© 2025 Gustavo NFC</footer>
-  </div>
+    <script>
+        // --- 1. Lógica Dark/Light Mode ---
+        const html = document.documentElement;
+        const themeIcon = document.querySelector('.theme-switch i');
 
+        // Verifica preferência salva ou do sistema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            html.setAttribute('data-theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Troca ícone
+            if (newTheme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
+
+        // --- 2. Gerador de vCard (Contato) ---
+        function downloadVCard() {
+            // DADOS DO CLIENTE (Preencha aqui)
+            const contact = {
+                name: "Gustavo",
+                surname: "Vicente",
+                org: "Paschoalotto",
+                title: "Analista de BI",
+                phone: "+5514998633376",
+                email: "seuemail@email.com",
+                url: window.location.href
+            };
+
+            // Formato VCF Padrão
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+N:${contact.surname};${contact.name};;;
+FN:${contact.name} ${contact.surname}
+ORG:${contact.org}
+TITLE:${contact.title}
+TEL;TYPE=CELL:${contact.phone}
+EMAIL:${contact.email}
+URL:${contact.url}
+END:VCARD`;
+
+            // Cria o blob e link de download
+            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${contact.name}_${contact.surname}.vcf`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- 3. Compartilhamento Nativo ---
+        async function sharePage() {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Cartão Digital de Gustavo',
+                        text: 'Confira meus links e contatos profissionais!',
+                        url: window.location.href
+                    });
+                } catch (err) {
+                    console.log('Cancelado pelo usuário');
+                }
+            } else {
+                // Fallback: Copiar link
+                navigator.clipboard.writeText(window.location.href);
+                alert('Link copiado para a área de transferência!');
+            }
+        }
+    </script>
 </body>
 </html>
