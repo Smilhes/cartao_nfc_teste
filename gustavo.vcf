@@ -1,10 +1,11 @@
 BEGIN:VCARD
 VERSION:3.0
+PRODID:-//Gustavo NFC//Bussines Card//PT
 N:Vicente;Gustavo;;;
 FN:Gustavo Vicente
-TEL;TYPE=CELL:+5514998633376
-EMAIL:gustavovicente5@gmail.com
 ORG:Paschoalotto
 TITLE:Analista de BI
-URL:https://exemplo.com
+EMAIL;type=INTERNET;type=WORK:gustavovicente5@gmail.com
+TEL;type=CELL:+5514998633376
+URL:https://www.linkedin.com/in/gvbento/
 END:VCARD
