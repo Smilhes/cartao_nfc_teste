@@ -238,8 +238,8 @@
         <!-- Links -->
         <div class="links">
             <!-- Botão Mágico: Gera Contato .vcf no clique -->
-            <a href="#" onclick="downloadVCard()" class="btn btn-primary">
-                <i class="fas fa-user-plus"></i> Salvar Contato
+            <a href="contato.vcf" target="_blank" class="btn btn-primary">
+                 <i class="fas fa-user-plus"></i> Salvar Contato
             </a>
             
             <a href="https://wa.me/5514998633376" target="_blank" class="btn">
@@ -305,43 +305,8 @@
             }
         }
 
-        // --- 2. Gerador de vCard (Contato) ---
-        function downloadVCard() {
-            // DADOS DO CLIENTE (Preencha aqui)
-            const contact = {
-                name: "Gustavo",
-                surname: "Vicente",
-                org: "Paschoalotto",
-                title: "Analista de BI",
-                phone: "+5514998633376",
-                email: "seuemail@email.com",
-                url: window.location.href
-            };
 
-            // Formato VCF Padrão
-            const vcard = `BEGIN:VCARD
-VERSION:3.0
-N:${contact.surname};${contact.name};;;
-FN:${contact.name} ${contact.surname}
-ORG:${contact.org}
-TITLE:${contact.title}
-TEL;TYPE=CELL:${contact.phone}
-EMAIL:${contact.email}
-URL:${contact.url}
-END:VCARD`;
-
-            // Cria o blob e link de download
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', `${contact.name}_${contact.surname}.vcf`);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        // --- 3. Compartilhamento Nativo ---
+        // --- 2. Compartilhamento Nativo ---
         async function sharePage() {
             if (navigator.share) {
                 try {
