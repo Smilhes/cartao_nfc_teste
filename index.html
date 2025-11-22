@@ -238,8 +238,8 @@
         <!-- Links -->
         <div class="links">
             <!-- Botão Mágico: Gera Contato .vcf no clique -->
-            <a href="gustavo.vcf" target="_blank" class="btn btn-primary">
-                 <i class="fas fa-user-plus"></i> Salvar Contato
+            <a href="gustavo.vcf" onclick="shareContact(event)" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Salvar Contato
             </a>
             
             <a href="https://wa.me/5514998633376" target="_blank" class="btn">
@@ -325,5 +325,44 @@
             }
         }
     </script>
+    <script>
+    async function shareContact(e) {
+        // Previne que o link abra a nova janela imediatamente
+        e.preventDefault(); 
+        
+        const vcfUrl = 'gustavo.vcf'; // Nome do seu arquivo na pasta
+
+        try {
+            // 1. Busca o arquivo real no servidor
+            const response = await fetch(vcfUrl);
+            const blob = await response.blob();
+            
+            // 2. Cria um arquivo virtual para o navegador
+            const file = new File([blob], 'Gustavo_Vicente.vcf', { type: 'text/vcard' });
+
+            // 3. Tenta usar o Compartilhamento Nativo (iPhone/Android Moderno)
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: 'Salvar Contato',
+                    text: 'Adicione Gustavo aos seus contatos.'
+                });
+            } else {
+                // 4. Fallback: Se não der para compartilhar, força o download clássico
+                // Isso evita abrir aba nova e tenta baixar na mesma
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = 'Gustavo_Vicente.vcf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        } catch (error) {
+            console.error('Erro ao processar contato:', error);
+            // Se tudo der errado, abre o link original (pelo href do botão)
+            window.location.href = vcfUrl;
+        }
+    }
+</script>
 </body>
 </html>
